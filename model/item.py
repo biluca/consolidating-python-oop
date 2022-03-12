@@ -1,18 +1,8 @@
 import csv
-
-
-class Object:
-    all = []
-
-    def __init__(self):
-        Object.all.append(self)
-        
+from model.object import Object
 
 
 class Item(Object):
-
-    default_discount = 0.9
-    discount_limit = 700.00
 
     def __init__(self, description: str, price: float, quantity: int):
         super().__init__()
@@ -30,9 +20,16 @@ class Item(Object):
         return f"Item({self.description}, {self.price}, {self.quantity})"
 
     def calculate_total_price(self):
-        if (self.price > self.discount_limit):
-            self.total = self.price * self.quantity * self.default_discount
-        self.total = self.price * self.quantity
+        self.__total = self.price * self.quantity
+    
+
+    @property
+    def total(self):
+        return self.__total
+
+    @total.setter
+    def total(self, total):
+        self.__total = total
 
     def validate(self):
         assert type(self.price) == float, "Price needs to be a Float Value"
@@ -56,13 +53,3 @@ class Item(Object):
     @staticmethod
     def is_float(value):
         return isinstance(value, float)
-
-
-class Phone(Item):
-
-    def __init__(self, description: str, price: float, quantity: int, touch_screen: bool):
-        super().__init__(description, price, quantity)
-        self.touch_screen = touch_screen
-
-    def __repr__(self) -> str:
-        return f"Phone({self.description}, {self.price}, {self.quantity}, {self.touch_screen})"

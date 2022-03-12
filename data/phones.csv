@@ -1,0 +1,4 @@
+description,price,quantity,touch_screen
+"Redmi Note 9", 500.00, 1, True 
+"iPhone X", 2300.0, 2, True
+"Nokia 2220", 350.0, 2, False

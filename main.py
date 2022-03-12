@@ -1,13 +1,19 @@
-from item import Item, Phone, Object
+from model.item import Item
+from model.phone import Phone
+from model.object import Object
 
-Item.instantiate_from_csv("items.csv")
+Item.instantiate_from_csv("data/items.csv")
+Phone.instantiate_from_csv("data/phones.csv")
 
-phone1 = Phone("iPhone IX", 9999.98, 2, True)
-phone2 = Phone("Nokia 2220", 150.49, 3, False)
+# print(Item.all)
+# print("---")
+# print(Phone.all)
+# print("---")
+# print(Object.all)
 
+for item in Item.all:
+    print(item.total)
+    item.total = int(item.total) + 1.0
 
-print(Item.all)
-print("---")
-print(Phone.all)
-print("---")
-print(Object.all)
+for item in Item.all:
+    print(item.total)
